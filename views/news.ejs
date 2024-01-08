@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@100&family=Open+Sans:wght@300&family=PT+Serif&family=Roboto:wght@100;300&family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    <title>News</title>
+</head>
+<body>
+    <header>
+        <div>
+            <img class="logo" src="images/logo.png" alt="">
+        </div>
+        
+        <nav>
+            <ul class="header__ul">
+                <li><a href="">Home</a></li>
+                <li><a href="">News</a></li>
+                <li><a href="">Items</a></li>
+                <li><select id="dropdown" name="dropdown">
+                    <option value="">More</option>
+                    <option value="option1"><a href="">Reports</a></option>
+                    <option value="option1"><a href="">Memorial</a></option>
+                    <option value="option2"><a href="">Members List</a></option>
+                    <option value="option3"><a href="">Bylaw</a></option>
+                </select></li>
+            </ul>
+        </nav>
+
+        <div class="humburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+
+        <img  class="svg" src="images/manage.svg" alt="">
+    </header>
+    <main class="main">
+        <h1 class="title">Welcome to the Latest Updates from Our Idir Community</h1>
+        
+        <p class="intro">Unveil the latest news, catch insightful announcements, greet new members, and explore fresh additions to our item collection. As a dedicated member, this is your direct line to the pulse of our digitalized Idir world. Join us in this exclusive journey, and embrace the vibrant updates that shape our community!</p>
+        <div class="outer_container">
+            
+            <% var index = 0; %>
+            <% while (index < news.length & index< 6) { %>
+            <section class="each-news" id="news<%=index + 1 %>D">
+                <div class="date">
+                    <img class="svg" src="images/calander.svg" alt="">
+                    <label for="" id="date"><%= news[index].date %></label>
+                </div>
+    
+                <img class="gen-img" id="news-img" src=<%= news[index].imgurl %> alt="">
+                <h3 id="title"> <%= news[index].title %> </h3>
+                <p id="descrption"> <%= news[index].all %> </p>
+                <hr>
+                <div class="author">
+                    <img id="rep-img" class="reporter" src=<%= news[index].authorImg %> alt="">
+                    <p id="author"><%= news[index].author %></p>
+                    
+                    
+                </div>
+                
+            </section>
+            <% index++; %>
+            <% } %>
+            
+            
+            
+            <section class="news">
+                
+                <h2 class="left">Trending News</h2>
+                
+                <div class="trending">
+                    <% if (news.length==0) { %>
+                        <h1>There are No News</h1>
+                    <% } %>
+                    
+                    <% var index = 0; %>
+
+                    <% while (index < news.length & index < 6) { %>
+                    <div class="ind" id="news<%= index + 1 %>">
+                        <img class="indiv" src="<%= news[index].imgurl %>" alt="">
+                        <hr>
+                        <div>
+                            <div class="add">
+                                <h4><%= news[index].author %></h4>
+                                |
+                                <h4><%= news[index].date %></h4>
+                            </div>
+                            <p><%= news[index].desc %></p>
+                        </div>
+                        <hr>
+                    </div>
+                    <% index++; %>
+                    <% } %>
+                    
+                </div>
+                
+                <button id="more">Load More <img class="svg" src="images/more.svg" alt=""></button>
+                <button id="hide">Hide <img class="svg" src="images/less.svg" alt=""></button>
+            </section>
+        </div>
+
+        <div class="outer_container">
+            <section class="anouncements">
+                <h2>Announcements</h2>
+                <% if (announcements.length==0) { %>
+                    <h1>There is No new Announcement</h1>
+                <% } %>
+
+                <% var index = 0; %>
+                <% while (index < announcements.length & index < 10) { %>
+                
+                <div><%=announcements[index].desc%></div>
+                <% index++; %>
+                <% } %>
+
+            </section>
+            <section>
+                <h2>Items</h2>
+                <div>
+                    <% if (items.length==0) { %>
+                        <h1>There is No new item added</h1>
+                    <% } %>
+                    <% for (var index = 0; index < items.length; index += 2) { %>
+                    <div class="new-items">
+                            <% if (index == 4 ){ %>
+                            <% break  }%>
+                            
+                            <a href="items.html#<%= items[index].id %>">
+                                <div>
+                                    <img src="<%= items[index].imgurl %>" alt="">
+                                    <p><%= items[index].desc %></p>
+                                </div>
+                            </a>
+                            
+                            <% if (index + 1 < items.length) { %>
+                                <a href="items.html#<%= items[index + 1].id %>">
+                                    <div>
+                                        <img src="<%= items[index + 1].imgurl %>" alt="">
+                                        <p><%= items[index + 1].desc %></p>
+                                    </div>
+                                </a>
+                            <% } %>
+                        
+                    </div>
+                    <% } %>
+                    
+                    
+                    
+                    
+                </div>
+            </section>
+        </div>
+
+        <div class="members-con">
+            <section class="members">
+                <h2>Members</h2>
+                <% if (members.length==0) { %>
+                    <h1>There is No new Member news</h1>
+                <% } %>
+                <% for (var index = 0; index < members.length; index += 4) { %>
+                <div>
+
+                    <div>
+                        <a href="members.html#member<%=members[index].id%>">
+                            <div>
+                                <img src=<%=members[index].imgurl%> alt="">
+                                <div>
+                                    <h3><%=members[index].name%></h3>
+                                    <p><%=members[index].des%></p>
+                                </div>
+                            </div>
+                        </a>
+                        <% if (index + 1 < members.length) { %>
+                        <a href="members.html#member<%=members[index+1].id%>">
+                            <div>
+                                <img src=<%=members[index+1].imgurl%> alt="">
+                                <div>
+                                    <h3><%=members[index+1].name%></h3>
+                                    <p><%=members[index+1].des%></p>
+                                </div>
+                            </div>
+                        </a>
+                        <% } %>
+                    </div>
+                    
+                    <div>
+                        <% if (index + 2 < members.length) { %>
+                        <a href="members.html#member<%=members[index+2].id%>">
+                            <div>
+                                <img src=<%=members[index+2].imgurl%> alt="">
+                                <div>
+                                    <h3><%=members[index+2].name%></h3>
+                                    <p><%=members[index+2].des%></p>
+                                </div>
+                            </div>
+                        </a>
+                        <% } %>
+                        <% if (index + 3 < members.length) { %>
+                        <a href="members.html#member<%=members[index+3].id%>">
+                            <div>
+                                <img src=<%=members[index+3].imgurl%> alt="">
+                                <div>
+                                    <h3><%=members[index+3].name%></h3>
+                                    <p><%=members[index+3].des%></p>
+                                </div>
+                            </div>
+                        </a>
+                        <% } %>
+                    </div>
+                </div>
+                <% } %>
+
+                
+                
+                
+                
+            </section>
+
+        </div>
+        <div class="outer_container bottom">
+            <div class="social-medias">
+                <h2>Join Our Community</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque officiis libero modi quisquam ullam quo corrupti dolorem magni obcaecati reiciendis saepe, consectetur quis dolorum, omnis ab. Pariatur architecto exercitationem amet.</p>
+                <div>
+                    <a href=""><img class="social-media" src="images/instagram.svg" alt=""></a>
+                    <a href=""><img class="social-media" src="images/telegram.svg" alt=""></a>
+                    <a href=""><img class="social-media" src="images/twitter.svg" alt=""></a>
+                    <a href=""><img class="social-media"src="images/facebook.svg" alt=""></a>
+                </div>
+
+            </div>
+            <div class="contact">
+                <h2>Contact</h2>
+                <form action="/admin" method="post">
+                    <div class="phone-tel">
+                        <div>
+                            <label for="">Name:</label><br>
+                            <input type="text" name="name" id="" required><br>
+                        </div>
+                        <div>
+                            <label for="">Phone Number:</label><br>
+                            <input type="text" name="phone" id="" required><br>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="">Email:</label><br>
+                        <input type="email" name="email" id="" required><br>
+                    </div>
+                    <label for="">Your Concern:</label><br>
+                    <textarea name="concern" id="" cols="60" rows="20" required></textarea>
+                    <input class="submit" type="submit"  id="">
+                </form>
+            </div>
+        </div>
+
+        
+        
+    </main>
+    <footer>
+        <h2 class="left">Explore Digitalized Idir</h2>
+        <div>
+            <div>
+                <a href="">Home</a>
+                <a href="">About</a>
+            </div>
+            <div>
+                <a href="">Items</a>
+                <a href="">News</a>
+            </div>
+            <div>
+                <a href="">Members</a>
+                <a href="">Memorial</a>
+            </div>
+            <div>
+                <a href="">ByLaw</a>
+                <a href="">Reports</a>
+            </div>
+        </div>
+        
+        <p>Copyright © 2023 DigitalizedIdir. The digitalizedIdir is not responsible for the content of external sites. Read about our approach to external linking.</p>
+    </footer>
+  
+    <script src="news.js"></script>
+</body>
+</html>
